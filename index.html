@@ -1,346 +1,601 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Bharath · NLP Portfolio</title>
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Bharath · NLP Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<div class="wrap">
-  <nav class="nav" aria-label="Main">
-    <a class="logo" href="#top">B.</a>
-    <ul>
-      <li><a href="#activities">Activities</a></li>
-      <li><a href="#project">Project</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a class="pill" href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-  <header class="hero" id="top">
-    <div class="hero-text">
-      <div class="mono">CSI4001 · Natural Language Processing</div>
-      <h1>Bharath</h1>
-      <div class="sub">Class portfolio</div>
-      <p class="lead">Viterbi, edit distance, morphotactics and metaphor, worked through in Tamil, Malayalam, Hindi and English.</p>
-      <div><a class="btn accent" href="#activities">See the activities</a> <a class="btn" href="#about">About me</a></div>
-      <div class="mono" style="text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:14px">Submitted to Prof. Sharmila Banu · VIT Vellore</div>
-    </div>
-    <div class="stage" id="stage" tabindex="0" role="img" aria-label="Portrait of Bharath in front of an orange circle, surrounded by words in Tamil, Malayalam, Hindi and English that rotate. Drag sideways or use the arrow keys to rotate them.">
-      <div class="arch"></div>
-      <div class="words" id="words"></div>
-      <img class="me" src="img/me.png" alt="">
-      <div class="hint">↔ Drag to rotate</div>
-    </div>
-  </header>
-</div>
-
-<section id="activities" class="paper">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="mono">Class activities</div>
-      <h2>Activities</h2>
-      <p>Seven entries: five class activities from CSI4001 and two notebooks from my GitHub. Where there is a working version, it is in the demos below.</p>
-    </div>
-    <ol class="log">
-      <li class="row"><div class="n">1</div><div><h3>Introductory class</h3><p class="d">Which languages I speak, answered in the first class.</p></div><div class="side"><span class="tag">In class</span><a class="btn small" href="#intro">See the answer</a></div></li>
-      <li class="row"><div class="n">2</div><div><h3>Edit distance</h3><p class="d">The fewest insertions, deletions and substitutions that turn one string into another. Solved on my own later.</p></div><div class="side"><span class="tag later">Solved later, alone</span><a class="btn small" href="#edit">Try the demo</a></div></li>
-      <li class="row"><div class="n">3</div><div><h3>Viterbi</h3><p class="d">Finding the most likely tag sequence for killer, crazy, clown, problem.</p></div><div class="side"><span class="tag">In class</span><a class="btn small" href="#viterbi">Try the demo</a></div></li>
-      <li class="row"><div class="n">4</div><div><h3>Morphotactics takeaway</h3><p class="d">The order in which morphemes may combine into a word, shown with Tamil.</p></div><div class="side"><span class="tag">In class</span><a class="btn small" href="#morphotactics">Try the demo</a></div></li>
-      <li class="row"><div class="n">5</div><div><h3>Metaphor activity</h3><p class="d">Reading “His mind is a computer” as a metaphor, in four languages.</p></div><div class="side"><span class="tag">In class</span><a class="btn small" href="#sentence">See the sentence</a></div></li>
-      <li class="row"><div class="n">6</div><div><h3>Inaugural addresses</h3><p class="d">Word clouds, counts and a comparison of five presidents, with NLTK.</p></div><div class="side"><span class="tag">Notebook · 31 Jul 2026</span><a class="btn small" href="#nb1">Read the notebook</a></div></li>
-      <li class="row"><div class="n">7</div><div><h3>Name classifier and bag of words</h3><p class="d">Naive Bayes on the last letter of a name, and cosine similarity between sentences.</p></div><div class="side"><span class="tag">Notebook · 21 Aug 2026</span><a class="btn small" href="#nb2">Read the notebook</a></div></li>
-    </ol>
-  </div>
-</section>
-
-<section id="demos">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="mono">Working versions</div>
-      <h2>Demos</h2>
-      <p>Small, runnable versions of the ideas above. Change the inputs and watch the result update.</p>
-    </div>
-    <article class="demo" id="intro">
-      <div class="head">
-        <div class="mono">Introductory class</div>
-        <h3>Which languages do I speak?</h3>
-        <p class="cap">Asked in the first class whether I am multilingual, I named four languages.</p>
-      </div>
-      <ul class="langs">
-        <li><i>TA</i><span lang="ta">தமிழ்</span></li>
-        <li><i>ML</i><span lang="ml">മലയാളം</span></li>
-        <li><i>EN</i><span>English</span></li>
-        <li><i>HI</i><span lang="hi">हिन्दी</span></li>
+    <nav class="nav" aria-label="Main">
+      <a class="logo" href="#top"></a>
+      <ul>
+        <li><a href="#activities">Activities</a></li>
+        <li><a href="#project">Project</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a class="pill" href="#contact">Contact</a></li>
       </ul>
-    </article>
-    <article class="demo" id="edit">
-      <div class="head">
-        <div class="mono">Edit distance · dynamic programming</div>
-        <h3>Turning one word into another</h3>
-        <p class="cap">Each cell holds the fewest edits between a prefix of the first word and a prefix of the second. Insert, delete and substitute each cost 1. The highlighted cells trace one cheapest route back from the bottom right.</p>
-      </div>
-      <div class="ctrl">
-        <label for="eA">From<input type="text" id="eA" value="kitten" maxlength="12" autocomplete="off"></label>
-        <label for="eB">To<input type="text" id="eB" value="sitting" maxlength="12" autocomplete="off"></label>
-      </div>
-      <div class="scroll"><div id="eTable"></div></div>
-      <p class="res" id="eRes"></p>
-      <div class="ops" id="eOps"></div>
-      <figure class="hand"><img src="assets/img/edit-distance.jpg" alt="Handwritten edit distance working" onerror="this.parentNode.classList.add('missing')"><figcaption><span class="ok">My handwritten working.</span><span class="no">Photo of my handwritten work goes here: assets/img/edit-distance.jpg</span></figcaption></figure>
-    </article>
-    <article class="demo" id="viterbi">
-      <div class="head">
-        <div class="mono">Viterbi · tagging</div>
-        <h3>Tagging killer, crazy, clown, problem</h3>
-        <p class="cap">The hidden states are the tags A (adjective) and N (noun); the words are what we see. Each column keeps, for each tag, the best score of any path that ends there.</p>
-      </div>
-      <div class="ctrl">
-        <label for="vObs">Words<input class="wide" type="text" id="vObs" value="killer crazy clown problem" maxlength="60" autocomplete="off" aria-describedby="vErr"></label>
-        <button class="btn dark small" id="vNext" type="button">Next step</button>
-        <button class="btn small" id="vAll" type="button">Show all</button>
-        <button class="btn small" id="vReset" type="button">Reset</button>
-      </div>
-      <div class="scroll"><div id="vSvg"></div></div>
-      <p class="note" id="vNote" aria-live="polite"></p>
-      <p class="res" id="vRes"></p>
-      <p class="note" id="vErr"></p>
-      <div class="params" aria-label="Model numbers">
-        <span>Start: A 0.25, N 0.75</span><span>A→N 1</span><span>N→A 0.5, N→N 0.5</span>
-        <span>A emits crazy 1</span><span>N emits clown 0.4, killer 0.3, problem 0.3</span>
-      </div>
-      <figure class="hand"><img src="assets/img/viterbi.jpg" alt="Handwritten Viterbi working" onerror="this.parentNode.classList.add('missing')"><figcaption><span class="ok">My handwritten working.</span><span class="no">Photo of my handwritten work goes here: assets/img/viterbi.jpg</span></figcaption></figure>
-    </article>
-    <article class="demo" id="morphotactics">
-      <div class="head">
-        <div class="mono">Morphotactics · Tamil nouns</div>
-        <h3>Building வீடு into a word</h3>
-        <p class="cap">A Tamil noun stem can take a plural suffix, then a case suffix, in that order only. Choose the pieces, then try swapping the order.</p>
-      </div>
-      <div class="ctrl">
-        <label for="mPl">Plural
-          <select id="mPl"><option value="1">கள் (plural)</option><option value="0">none</option></select>
-        </label>
-        <div>
-          <div class="mono" style="margin-bottom:5px" id="mCaseLbl">Case</div>
-          <div class="radios" role="radiogroup" aria-labelledby="mCaseLbl" id="mCase"></div>
+    </nav>
+    <header class="hero" id="top">
+      <div class="hero-text">
+        <div class="mono">CSI4001 · Natural Language Processing</div>
+        <h1>Bharath</h1>
+        <div class="sub">Class portfolio</div>
+        <p class="lead">Viterbi, edit distance, morphotactics and metaphor, worked through in Tamil, Malayalam, Hindi
+          and English.</p>
+        <div><a class="btn accent" href="#activities">See the activities</a> <a class="btn" href="#about">About me</a>
         </div>
-        <label for="mOrd">Order
-          <select id="mOrd"><option value="ok">Plural, then case</option><option value="bad">Case, then plural</option></select>
-        </label>
+        <div class="mono" style="text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:14px">Submitted
+          to Prof. Dr. Sharmila Banu · VIT Vellore</div>
       </div>
-      <div class="chips" id="mChips"></div>
-      <div class="surface" id="mSurf" lang="ta"></div>
-      <div class="gloss" id="mGloss"></div>
-      <div><span class="state" id="mState"></span></div>
-      <div class="fst" id="mFst" aria-label="Rule: stem, optional plural, optional case"></div>
-      <figure class="hand"><img src="assets/img/morphotactics.jpg" alt="Handwritten morphotactics takeaway" onerror="this.parentNode.classList.add('missing')"><figcaption><span class="ok">My handwritten working.</span><span class="no">Photo of my handwritten work goes here: assets/img/morphotactics.jpg</span></figcaption></figure>
-    </article>
-    <article class="demo" id="sentence">
-      <div class="head">
-        <div class="mono">Translation and metaphor</div>
-        <h3>“His mind is a computer”</h3>
-        <p class="cap">The same sentence in the four languages of this portfolio, and what the metaphor carries over.</p>
+      <div class="stage" id="stage" tabindex="0" role="img"
+        aria-label="Portrait of Bharath in front of an orange circle, surrounded by words in Tamil, Malayalam, Hindi and English that rotate. Drag sideways or use the arrow keys to rotate them.">
+        <div class="arch"></div>
+        <div class="words" id="words"></div>
+        <img class="me" src="img/me.png" alt="">
+        <div class="hint">↔ Drag to rotate</div>
       </div>
-      <div class="two">
+    </header>
+  </div>
+
+  <section id="activities" class="paper">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono">Class activities</div>
+        <h2>Activities</h2>
+        <p>Seven entries: five class activities from CSI4001 and two notebooks from my GitHub. Where there is a working
+          version, it is in the demos below.</p>
+      </div>
+      <ol class="log">
+        <li class="row">
+          <div class="n">1</div>
+          <div>
+            <h3>Introductory class</h3>
+            <p class="d">Which languages I speak, answered in the first class.</p>
+          </div>
+          <div class="side"><span class="tag">In class</span><a class="btn small" href="#intro">See the answer</a></div>
+        </li>
+        <li class="row">
+          <div class="n">2</div>
+          <div>
+            <h3>Edit distance</h3>
+            <p class="d">The fewest insertions, deletions and substitutions that turn one string into another.</p>
+          </div>
+          <div class="side"><span class="tag">In class</span><a class="btn small" href="#edit">Try the demo</a></div>
+        </li>
+        <li class="row">
+          <div class="n">3</div>
+          <div>
+            <h3>Viterbi</h3>
+            <p class="d">Finding the most likely tag sequence for killer, crazy, clown, problem.</p>
+          </div>
+          <div class="side"><span class="tag">In class</span><a class="btn small" href="#viterbi">Try the demo</a></div>
+        </li>
+        <li class="row">
+          <div class="n">4</div>
+          <div>
+            <h3>Morphotactics takeaway</h3>
+            <p class="d">The order in which morphemes may combine into a word, shown with Tamil.</p>
+          </div>
+          <div class="side"><span class="tag">In class</span><a class="btn small" href="#morphotactics">Try the demo</a>
+          </div>
+        </li>
+        <li class="row">
+          <div class="n">5</div>
+          <div>
+            <h3>Metaphor activity</h3>
+            <p class="d">Reading “His mind is a computer” as a metaphor, in four languages.</p>
+          </div>
+          <div class="side"><span class="tag">In class</span><a class="btn small" href="#sentence">See the sentence</a>
+          </div>
+        </li>
+        <li class="row">
+          <div class="n">6</div>
+          <div>
+            <h3>Inaugural addresses</h3>
+            <p class="d">Word clouds, counts and a comparison of five presidents, with NLTK.</p>
+          </div>
+          <div class="side"><span class="tag">Notebook · 31 Jul 2026</span><a class="btn small" href="#nb1">Read the
+              notebook</a></div>
+        </li>
+        <li class="row">
+          <div class="n">7</div>
+          <div>
+            <h3>Name classifier and bag of words</h3>
+            <p class="d">Naive Bayes on the last letter of a name, and cosine similarity between sentences.</p>
+          </div>
+          <div class="side"><span class="tag">Notebook · 21 Aug 2026</span><a class="btn small" href="#nb2">Read the
+              notebook</a></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="demos">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono">Working versions</div>
+        <h2>Demos</h2>
+        <p>Small, runnable versions of the ideas above. Change the inputs and watch the result update.</p>
+      </div>
+      <article class="demo" id="intro">
+        <div class="head">
+          <div class="mono">Introductory class</div>
+          <h3>Which languages do I speak?</h3>
+          <p class="cap">Asked in the first class whether I am multilingual, I named four languages.</p>
+        </div>
         <ul class="langs">
-          <li><i>EN</i><span>His mind is a computer.</span></li>
-          <li><i>TA</i><span lang="ta">அவனுடைய மனம் ஒரு கணினி.</span></li>
-          <li><i>ML</i><span lang="ml">അവന്റെ മനസ്സ് ഒരു കമ്പ്യൂട്ടറാണ്.</span></li>
-          <li><i>HI</i><span lang="hi">उसका मन एक कंप्यूटर है।</span></li>
+          <li><i>TA</i><span lang="ta">தமிழ்</span></li>
+          <li><i>ML</i><span lang="ml">മലയാളം</span></li>
+          <li><i>EN</i><span>English</span></li>
+          <li><i>HI</i><span lang="hi">हिन्दी</span></li>
         </ul>
-        <div>
-          <div class="mono" style="margin-bottom:10px">Mind (target) from computer (source)</div>
-          <ul class="maps">
-            <li><b>Remembering</b><span class="ar">←</span><span>retrieving stored data</span></li>
-            <li><b>Thinking</b><span class="ar">←</span><span>processing</span></li>
-            <li><b>Learning</b><span class="ar">←</span><span>writing new information to memory</span></li>
-            <li><b>Left out</b><span class="ar">·</span><span>feeling, intuition, forgetting by accident</span></li>
+      </article>
+      <article class="demo" id="edit">
+        <div class="head">
+          <div class="mono">Edit distance · dynamic programming</div>
+          <h3>Turning one word into another</h3>
+          <p class="cap">Each cell holds the fewest edits between a prefix of the first word and a prefix of the second.
+            Insert, delete and substitute each cost 1. The highlighted cells trace one cheapest route back from the
+            bottom right.</p>
+        </div>
+        <div class="ctrl">
+          <label for="eA">From<input type="text" id="eA" value="kitten" maxlength="12" autocomplete="off"></label>
+          <label for="eB">To<input type="text" id="eB" value="sitting" maxlength="12" autocomplete="off"></label>
+        </div>
+        <div class="scroll">
+          <div id="eTable"></div>
+        </div>
+        <p class="res" id="eRes"></p>
+        <div class="ops" id="eOps"></div>
+        <figure class="hand"><img src="img/edit-distance.jpeg" alt="Handwritten edit distance working"
+            onerror="this.parentNode.classList.add('missing')">
+          <figcaption><span class="ok">My handwritten working.</span><span class="no">Photo of my handwritten work goes
+              here: img/edit-distance.jpeg</span></figcaption>
+        </figure>
+      </article>
+      <article class="demo" id="viterbi">
+        <div class="head">
+          <div class="mono">Viterbi · tagging</div>
+          <h3>Tagging killer, crazy, clown, problem</h3>
+          <p class="cap">The hidden states are the tags A (adjective) and N (noun); the words are what we see. Each
+            column keeps, for each tag, the best score of any path that ends there.</p>
+        </div>
+        <div class="ctrl">
+          <label for="vObs">Words<input class="wide" type="text" id="vObs" value="killer crazy clown problem"
+              maxlength="60" autocomplete="off" aria-describedby="vErr"></label>
+          <button class="btn dark small" id="vNext" type="button">Next step</button>
+          <button class="btn small" id="vAll" type="button">Show all</button>
+          <button class="btn small" id="vReset" type="button">Reset</button>
+        </div>
+        <div class="scroll">
+          <div id="vSvg"></div>
+        </div>
+        <p class="note" id="vNote" aria-live="polite"></p>
+        <p class="res" id="vRes"></p>
+        <p class="note" id="vErr"></p>
+        <div class="params" aria-label="Model numbers">
+          <span>Start: A 0.25, N 0.75</span><span>A→N 1</span><span>N→A 0.5, N→N 0.5</span>
+          <span>A emits crazy 1</span><span>N emits clown 0.4, killer 0.3, problem 0.3</span>
+        </div>
+        <figure class="hand"><img src="img/viterbi.jpeg" alt="Handwritten Viterbi working"
+            onerror="this.parentNode.classList.add('missing')">
+          <figcaption><span class="ok">My handwritten working.</span><span class="no">Photo of my handwritten work goes
+              here: img/viterbi.jpeg</span></figcaption>
+        </figure>
+      </article>
+      <article class="demo" id="morphotactics">
+        <div class="head">
+          <div class="mono">Morphotactics · Tamil nouns</div>
+          <h3>Building வீடு into a word</h3>
+          <p class="cap">A Tamil noun stem can take a plural suffix, then a case suffix, in that order only. Choose the
+            pieces, then try swapping the order.</p>
+        </div>
+        <div class="ctrl">
+          <label for="mPl">Plural
+            <select id="mPl">
+              <option value="1">கள் (plural)</option>
+              <option value="0">none</option>
+            </select>
+          </label>
+          <div>
+            <div class="mono" style="margin-bottom:5px" id="mCaseLbl">Case</div>
+            <div class="radios" role="radiogroup" aria-labelledby="mCaseLbl" id="mCase"></div>
+          </div>
+          <label for="mOrd">Order
+            <select id="mOrd">
+              <option value="ok">Plural, then case</option>
+              <option value="bad">Case, then plural</option>
+            </select>
+          </label>
+        </div>
+        <div class="chips" id="mChips"></div>
+        <div class="surface" id="mSurf" lang="ta"></div>
+        <div class="gloss" id="mGloss"></div>
+        <div><span class="state" id="mState"></span></div>
+        <div class="fst" id="mFst" aria-label="Rule: stem, optional plural, optional case"></div>
+        <figure class="hand"><img src="img/morphotactics.jpeg" alt="Handwritten morphotactics takeaway"
+            onerror="this.parentNode.classList.add('missing')">
+          <figcaption><span class="ok">My handwritten working.</span><span class="no">Photo of my handwritten work goes
+              here: img/morphotactics.jpeg</span></figcaption>
+        </figure>
+      </article>
+      <article class="demo" id="sentence">
+        <div class="head">
+          <div class="mono">Translation and metaphor</div>
+          <h3>“His mind is a computer”</h3>
+          <p class="cap">The same sentence in the four languages of this portfolio, and what the metaphor carries over.
+          </p>
+        </div>
+        <div class="two">
+          <ul class="langs">
+            <li><i>EN</i><span>His mind is a computer.</span></li>
+            <li><i>TA</i><span lang="ta">அவனுடைய மனம் ஒரு கணினி.</span></li>
+            <li><i>ML</i><span lang="ml">അവന്റെ മനസ്സ് ഒരു കമ്പ്യൂട്ടറാണ്.</span></li>
+            <li><i>HI</i><span lang="hi">उसका मन एक कंप्यूटर है।</span></li>
           </ul>
-        </div>
-      </div>
-    </article>
-    <article class="demo" id="inaugural">
-      <div class="head">
-        <div class="mono">Notebook · 31 Jul 2026 · NLTK</div>
-        <h3>Inaugural addresses</h3>
-        <p class="cap">Stop words and punctuation are removed first. In Obama’s 2009 address the most frequent word is “us” (23 times), then “nation” (12), “new” (11) and “america” (10).</p>
-      </div>
-      <div class="two">
-        <div>
-          <div class="ctrl">
-            <label for="iWord">Word across five presidents
-              <select id="iWord">
-                <option value="freedom">freedom</option>
-                <option value="government">government</option>
-                <option value="nation" selected>nation</option>
-                <option value="people">people</option>
-                <option value="america">america</option>
-              </select>
-            </label>
+          <div>
+            <div class="mono" style="margin-bottom:10px">Mind (target) from computer (source)</div>
+            <ul class="maps">
+              <li><b>Remembering</b><span class="ar">←</span><span>retrieving stored data</span></li>
+              <li><b>Thinking</b><span class="ar">←</span><span>processing</span></li>
+              <li><b>Learning</b><span class="ar">←</span><span>writing new information to memory</span></li>
+              <li><b>Left out</b><span class="ar">·</span><span>feeling, intuition, forgetting by accident</span></li>
+            </ul>
           </div>
-          <div class="bars" id="iBars"></div>
-          <p class="note">Raw counts. The speeches differ in length, so read the bars as counts and not rates.</p>
         </div>
-        <div>
-          <div class="ctrl">
-            <div class="mono">Share of long words by address</div>
-            <button class="btn small" id="lToggle" type="button">Show all</button>
+      </article>
+      <article class="demo" id="inaugural">
+        <div class="head">
+          <div class="mono">Notebook · 31 Jul 2026 · NLTK</div>
+          <h3>Inaugural addresses</h3>
+          <p class="cap">Stop words and punctuation are removed first. In Obama’s 2009 address the most frequent word is
+            “us” (23 times), then “nation” (12), “new” (11) and “america” (10).</p>
+        </div>
+        <div class="two">
+          <div>
+            <div class="ctrl">
+              <label for="iWord">Word across five presidents
+                <select id="iWord">
+                  <option value="freedom">freedom</option>
+                  <option value="government">government</option>
+                  <option value="nation" selected>nation</option>
+                  <option value="people">people</option>
+                  <option value="america">america</option>
+                </select>
+              </label>
+            </div>
+            <div class="bars" id="iBars"></div>
+            <p class="note">Raw counts. The speeches differ in length, so read the bars as counts and not rates.</p>
           </div>
-          <div class="bars" id="lBars"></div>
-          <p class="note">A long word has 10 or more letters. The share is out of all words left after removing stop words. Adams in 1825 is highest.</p>
+          <div>
+            <div class="ctrl">
+              <div class="mono">Share of long words by address</div>
+              <button class="btn small" id="lToggle" type="button">Show all</button>
+            </div>
+            <div class="bars" id="lBars"></div>
+            <p class="note">A long word has 10 or more letters. The share is out of all words left after removing stop
+              words. Adams in 1825 is highest.</p>
+          </div>
         </div>
-      </div>
-    </article>
-    <article class="demo" id="nb1">
-      <div class="head"><div class="mono">GitHub activity · 31 Jul 2026</div><h3>Inaugural addresses notebook</h3><p class="cap">The full notebook, scroll through it below.</p></div>
-      <div class="acts"><a class="btn dark small" href="assets/pdf/git-activity-31-07-2026.pdf" download>Download PDF</a> <a class="btn small" href="https://github.com/bharath-mp-2005/NLP" target="_blank" rel="noopener">View on GitHub</a></div>
-      <object class="pdfbox" data="assets/pdf/git-activity-31-07-2026.pdf#view=FitH" type="application/pdf" aria-label="Inaugural addresses notebook"><p>This browser cannot show the PDF here. <a href="assets/pdf/git-activity-31-07-2026.pdf">Open it</a>.</p></object>
-    </article>
-    <article class="demo" id="bow">
-      <div class="head">
-        <div class="mono">Notebook · 21 Aug 2026 · scikit-learn</div>
-        <h3>Bag of words</h3>
-        <p class="cap">The vocabulary is learned from two sentences: “Tessaract is good optical character recognition engine” and “optical character recognition is significant”. Any new sentence becomes a row of 1s and 0s over that vocabulary, and cosine similarity compares two rows.</p>
-      </div>
-      <div class="ctrl">
-        <label for="bA">Sentence A<input class="wide" type="text" id="bA" value="Google Cloud Vision is a character recognition engine" maxlength="120" autocomplete="off"></label>
-        <label for="bB">Sentence B<input class="wide" type="text" id="bB" value="OCR is an optical character recognition engine" maxlength="120" autocomplete="off"></label>
-      </div>
-      <div class="scroll"><div id="bTable"></div></div>
-      <p class="res" id="bRes"></p>
-      <p class="note">Words outside the vocabulary are ignored, and one-letter words are dropped, as in the notebook.</p>
-    </article>
-    <article class="demo" id="names">
-      <div class="head">
-        <div class="mono">Notebook · 21 Aug 2026 · NLTK Naive Bayes</div>
-        <h3>Guessing gender from a name</h3>
-        <p class="cap">The only feature is the last letter of the name. The classifier learned from NLTK’s list of 7,944 male and female names, then labelled two new names.</p>
-      </div>
-      <div class="chips">
-        <div class="chip"><b>David</b><span>ends in d · male</span></div>
-        <div class="chip"><b>Obama</b><span>ends in a · female</span></div>
-      </div>
-    </article>
-    <article class="demo" id="nb2">
-      <div class="head"><div class="mono">GitHub activity · 21 Aug 2026</div><h3>Name classifier and bag of words notebook</h3><p class="cap">The full notebook, scroll through it below.</p></div>
-      <div class="acts"><a class="btn dark small" href="assets/pdf/git-activity-21-08-2026.pdf" download>Download PDF</a> <a class="btn small" href="https://github.com/bharath-mp-2005/NLP" target="_blank" rel="noopener">View on GitHub</a></div>
-      <object class="pdfbox" data="assets/pdf/git-activity-21-08-2026.pdf#view=FitH" type="application/pdf" aria-label="Name classifier and bag of words notebook"><p>This browser cannot show the PDF here. <a href="assets/pdf/git-activity-21-08-2026.pdf">Open it</a>.</p></object>
-    </article>
-  </div>
-</section>
-
-<section id="project" class="paper">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="mono">Project</div>
-      <h2>Context-Aware Cyberbullying Detection in Chats</h2>
-      <p>Using previous and current messages to understand potentially harmful language.</p>
+      </article>
+      <article class="demo" id="nb1">
+        <div class="head">
+          <div class="mono">GitHub activity · 31 Jul 2026</div>
+          <h3>Inaugural addresses notebook</h3>
+          <p class="cap">The full notebook, scroll through it below.</p>
+        </div>
+        <div class="acts"><a class="btn dark small" href="assets/pdf/git-activity-31-07-2026.pdf" download>Download
+            PDF</a> <a class="btn small" href="https://github.com/bharath-mp-2005/NLP" target="_blank"
+            rel="noopener">View on GitHub</a></div>
+        <object class="pdfbox" data="assets/pdf/git-activity-31-07-2026.pdf#view=FitH" type="application/pdf"
+          aria-label="Inaugural addresses notebook">
+          <p>This browser cannot show the PDF here. <a href="assets/pdf/git-activity-31-07-2026.pdf">Open it</a>.</p>
+        </object>
+      </article>
+      <article class="demo" id="bow">
+        <div class="head">
+          <div class="mono">Notebook · 21 Aug 2026 · scikit-learn</div>
+          <h3>Bag of words</h3>
+          <p class="cap">The vocabulary is learned from two sentences: “Tessaract is good optical character recognition
+            engine” and “optical character recognition is significant”. Any new sentence becomes a row of 1s and 0s over
+            that vocabulary, and cosine similarity compares two rows.</p>
+        </div>
+        <div class="ctrl">
+          <label for="bA">Sentence A<input class="wide" type="text" id="bA"
+              value="Google Cloud Vision is a character recognition engine" maxlength="120" autocomplete="off"></label>
+          <label for="bB">Sentence B<input class="wide" type="text" id="bB"
+              value="OCR is an optical character recognition engine" maxlength="120" autocomplete="off"></label>
+        </div>
+        <div class="scroll">
+          <div id="bTable"></div>
+        </div>
+        <p class="res" id="bRes"></p>
+        <p class="note">Words outside the vocabulary are ignored, and one-letter words are dropped, as in the notebook.
+        </p>
+      </article>
+      <article class="demo" id="names">
+        <div class="head">
+          <div class="mono">Notebook · 21 Aug 2026 · NLTK Naive Bayes</div>
+          <h3>Guessing gender from a name</h3>
+          <p class="cap">The only feature is the last letter of the name. The classifier learned from NLTK’s list of
+            7,944 male and female names, then labelled two new names.</p>
+        </div>
+        <div class="chips">
+          <div class="chip"><b>David</b><span>ends in d · male</span></div>
+          <div class="chip"><b>Obama</b><span>ends in a · female</span></div>
+        </div>
+      </article>
+      <article class="demo" id="nb2">
+        <div class="head">
+          <div class="mono">GitHub activity · 21 Aug 2026</div>
+          <h3>Name classifier and bag of words notebook</h3>
+          <p class="cap">The full notebook, scroll through it below.</p>
+        </div>
+        <div class="acts"><a class="btn dark small" href="assets/pdf/git-activity-21-08-2026.pdf" download>Download
+            PDF</a> <a class="btn small" href="https://github.com/bharath-mp-2005/NLP" target="_blank"
+            rel="noopener">View on GitHub</a></div>
+        <object class="pdfbox" data="assets/pdf/git-activity-21-08-2026.pdf#view=FitH" type="application/pdf"
+          aria-label="Name classifier and bag of words notebook">
+          <p>This browser cannot show the PDF here. <a href="assets/pdf/git-activity-21-08-2026.pdf">Open it</a>.</p>
+        </object>
+      </article>
     </div>
-    <div class="acts"><a class="btn dark small" href="#writeup">Project writeup</a><a class="btn small" href="#deck">Project PPT</a><a class="btn small" href="#video">Demo video</a></div>
+  </section>
 
-    <div class="wr" id="writeup">
-      <h3><span>1</span>Title</h3>
-      <p><b>Context-Aware Cyberbullying Detection in Chats</b>: using previous and current messages to understand potentially harmful language.</p>
-      <p>Team: Hiba Fathima T K (23MID0057), Bharath Palanisamy Mettukadai (23MID0014), Asad Irfan K (23MID0442).</p>
+  <section id="project" class="paper">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono">Project</div>
+        <h2>Context-Aware Cyberbullying Detection in Chats</h2>
+        <p>Using previous and current messages to understand potentially harmful language.</p>
+      </div>
+      <div class="acts"><a class="btn dark small" href="#writeup">Project writeup</a><a class="btn small"
+          href="#deck">Project PPT</a><a class="btn small" href="#video">Demo video</a></div>
 
-      <h3><span>2</span>Motivation</h3>
-      <p>Online chatting is a big part of everyday communication. Cyberbullying through messages can hurt mental well-being and make online spaces unsafe. Detecting it automatically is hard, because the meaning of a message depends on the conversation around it. We use natural language processing on both the previous and the current message, so the system reads a message in its context. The goal is to help human moderators find potentially harmful conversations, not to replace their judgement.</p>
+      <div class="wr" id="writeup">
+        <h3><span>1</span>Title</h3>
+        <p><b>Context-Aware Cyberbullying Detection in Chats</b>: using previous and current messages to understand
+          potentially harmful language.</p>
+        <p>Team: Hiba Fathima T K (23MID0057), Bharath Palanisamy Mettukadai (23MID0014), Asad Irfan K (23MID0442).</p>
 
-      <h3><span>3</span>Existing gap</h3>
-      <p>Traditional detection often looks only at the words in one message, without the conversation around it. A system that checks each message alone can misread the meaning and predict wrongly.</p>
-      <ul><li>“I’m damn tired today.” contains “damn”, but that does not make it cyberbullying.</li><li>“You are useless.” may be abusive, depending on what came before it.</li></ul>
+        <h3><span>2</span>Motivation</h3>
+        <p>Online chatting is a big part of everyday communication. Cyberbullying through messages can hurt mental
+          well-being and make online spaces unsafe. Detecting it automatically is hard, because the meaning of a message
+          depends on the conversation around it. We use natural language processing on both the previous and the current
+          message, so the system reads a message in its context. The goal is to help human moderators find potentially
+          harmful conversations, not to replace their judgement.</p>
 
-      <h3><span>4</span>Architecture</h3>
-      <div class="pipe"><b>Previous + current message</b><i>→</i><b>Language check</b><i>→</i><b>Translate (Tamil, Malayalam)</b><i>→</i><b>Clean text</b><i>→</i><b>TF-IDF</b><i>→</i><b>Baseline model</b><i>+</i><b>Context-aware model</b><i>→</i><b>Compare SAFE / ABUSIVE</b></div>
-      <p>A Flask web app serves one page, <code>/</code>, and one prediction route, <code>/predict</code>, which takes the two messages as JSON. The four trained files (two TF-IDF vectorizers and two classifiers) are loaded once when the app starts. The baseline model sees only the current message. The context-aware model sees the previous and current message joined into one text. The page shows both predictions side by side.</p>
+        <h3><span>3</span>Existing gap</h3>
+        <p>Traditional detection often looks only at the words in one message, without the conversation around it. A
+          system that checks each message alone can misread the meaning and predict wrongly.</p>
+        <ul>
+          <li>“I’m damn tired today.” contains “damn”, but that does not make it cyberbullying.</li>
+          <li>“You are useless.” may be abusive, depending on what came before it.</li>
+        </ul>
 
-      <h3><span>5</span>Complete tech stack</h3>
-      <table><tr><th>Layer</th><th>Tool</th></tr>
-      <tr><td>Language</td><td>Python</td></tr>
-      <tr><td>Data handling</td><td>Pandas, NumPy</td></tr>
-      <tr><td>Features and models</td><td>Scikit-learn: TfidfVectorizer and LogisticRegression</td></tr>
-      <tr><td>Web app</td><td>Flask</td></tr>
-      <tr><td>Translation</td><td>deep-translator (Tamil and Malayalam to English)</td></tr>
-      <tr><td>Interface</td><td>HTML, CSS and JavaScript</td></tr>
-      <tr><td>Storage of trained models</td><td>Pickle files (.pkl)</td></tr></table>
+        <h3><span>4</span>Architecture</h3>
+        <div class="pipe"><b>Previous + current message</b><i>→</i><b>Language check</b><i>→</i><b>Translate (Tamil,
+            Malayalam)</b><i>→</i><b>Clean text</b><i>→</i><b>TF-IDF</b><i>→</i><b>Baseline
+            model</b><i>+</i><b>Context-aware model</b><i>→</i><b>Compare SAFE / ABUSIVE</b></div>
+        <p>A Flask web app serves one page, <code>/</code>, and one prediction route, <code>/predict</code>, which takes
+          the two messages as JSON. The four trained files (two TF-IDF vectorizers and two classifiers) are loaded once
+          when the app starts. The baseline model sees only the current message. The context-aware model sees the
+          previous and current message joined into one text. The page shows both predictions side by side.</p>
 
-      <h3><span>6</span>Datasets used</h3>
-      <p><b>Contextual Abuse Dataset (CAD)</b>, from Vidgen, Nguyen, Margetts, Rossini and Tromble (NAACL 2021). We used the file <code>CAD_context_aware.csv</code>: 27,494 Reddit entries, each with the message text and an annotation of the kind of abuse, labelled in the context of its conversation thread.</p>
-      <table><tr><th>Original label</th><th>Entries</th><th>Our class</th></tr>
-      <tr><td>Neutral</td><td>21,935</td><td>SAFE</td></tr><tr><td>CounterSpeech</td><td>220</td><td>SAFE</td></tr>
-      <tr><td>IdentityDirectedAbuse</td><td>2,729</td><td>ABUSIVE</td></tr><tr><td>AffiliationDirectedAbuse</td><td>1,349</td><td>ABUSIVE</td></tr>
-      <tr><td>PersonDirectedAbuse</td><td>1,112</td><td>ABUSIVE</td></tr><tr><td>Slur</td><td>149</td><td>ABUSIVE</td></tr></table>
-      <p>This gives 22,155 SAFE messages (80.6%) and 5,339 ABUSIVE messages (19.4%). Because abusive messages are about one in five, both classifiers use balanced class weights.</p>
+        <h3><span>5</span>Complete tech stack</h3>
+        <table>
+          <tr>
+            <th>Layer</th>
+            <th>Tool</th>
+          </tr>
+          <tr>
+            <td>Language</td>
+            <td>Python</td>
+          </tr>
+          <tr>
+            <td>Data handling</td>
+            <td>Pandas, NumPy</td>
+          </tr>
+          <tr>
+            <td>Features and models</td>
+            <td>Scikit-learn: TfidfVectorizer and LogisticRegression</td>
+          </tr>
+          <tr>
+            <td>Web app</td>
+            <td>Flask</td>
+          </tr>
+          <tr>
+            <td>Translation</td>
+            <td>deep-translator (Tamil and Malayalam to English)</td>
+          </tr>
+          <tr>
+            <td>Interface</td>
+            <td>HTML, CSS and JavaScript</td>
+          </tr>
+          <tr>
+            <td>Storage of trained models</td>
+            <td>Pickle files (.pkl)</td>
+          </tr>
+        </table>
 
-      <h3><span>7</span>Prompts used for the construction of the website</h3>
-      <p>Not applicable.</p>
+        <h3><span>6</span>Datasets used</h3>
+        <p><b>Contextual Abuse Dataset (CAD)</b>, from Vidgen, Nguyen, Margetts, Rossini and Tromble (NAACL 2021). We
+          used the file <code>CAD_context_aware.csv</code>: 27,494 Reddit entries, each with the message text and an
+          annotation of the kind of abuse, labelled in the context of its conversation thread.</p>
+        <table>
+          <tr>
+            <th>Original label</th>
+            <th>Entries</th>
+            <th>Our class</th>
+          </tr>
+          <tr>
+            <td>Neutral</td>
+            <td>21,935</td>
+            <td>SAFE</td>
+          </tr>
+          <tr>
+            <td>CounterSpeech</td>
+            <td>220</td>
+            <td>SAFE</td>
+          </tr>
+          <tr>
+            <td>IdentityDirectedAbuse</td>
+            <td>2,729</td>
+            <td>ABUSIVE</td>
+          </tr>
+          <tr>
+            <td>AffiliationDirectedAbuse</td>
+            <td>1,349</td>
+            <td>ABUSIVE</td>
+          </tr>
+          <tr>
+            <td>PersonDirectedAbuse</td>
+            <td>1,112</td>
+            <td>ABUSIVE</td>
+          </tr>
+          <tr>
+            <td>Slur</td>
+            <td>149</td>
+            <td>ABUSIVE</td>
+          </tr>
+        </table>
+        <p>This gives 22,155 SAFE messages (80.6%) and 5,339 ABUSIVE messages (19.4%). Because abusive messages are
+          about one in five, both classifiers use balanced class weights.</p>
 
-      <h3><span>8</span>NLP pipeline</h3>
-      <ol>
-        <li><b>Language handling.</b> Tamil and Malayalam text is detected by its Unicode range and translated to English. English text passes straight through.</li>
-        <li><b>Text cleaning.</b> Lowercase the text, remove links, replace every character that is not a letter, digit or space with a space, and collapse repeated spaces.</li>
-        <li><b>Data splitting.</b> The data was divided into a training set and a testing set.</li>
-        <li><b>Features.</b> TF-IDF with up to 10,000 features, single words and word pairs, English stop words removed, and L2 normalisation.</li>
-        <li><b>Baseline model.</b> Logistic regression on the current message only.</li>
-        <li><b>Context-aware model.</b> The same classifier on the previous message and the current message joined into one text.</li>
-        <li><b>Prediction.</b> Each model returns the probability that the message is abusive. A probability of 0.5 or more is labelled ABUSIVE, and anything lower SAFE.</li>
-        <li><b>Comparison.</b> The page shows both labels, and a short note when context changed the result.</li>
-      </ol>
-      <p>Both classifiers are logistic regression with balanced class weights, C = 1.0, L2 penalty, the lbfgs solver and up to 1,000 iterations.</p>
-      <table><tr><th>Metric</th><th>Baseline</th><th>Context-aware</th></tr>
-      <tr><td>Accuracy</td><td>77.60%</td><td>78.82%</td></tr><tr><td>Abusive precision</td><td>44.97%</td><td>47.24%</td></tr>
-      <tr><td>Abusive recall</td><td>51.45%</td><td>46.47%</td></tr><tr><td>Abusive F1-score</td><td>47.99%</td><td>46.85%</td></tr></table>
-      <p>Context raised accuracy and precision a little, while recall and F1-score went down. So adding context does not improve every metric.</p>
+        <h3><span>7</span>Prompts used for the construction of the website</h3>
+        <p>Not applicable.</p>
 
-      <h3><span>9</span>Users, inputs and output</h3>
-      <p><b>Users.</b> Moderators on social media platforms, schools and universities reviewing student chat reports, community moderators, and researchers studying how context affects abuse detection.</p>
-      <p><b>Inputs.</b> Two text boxes: the previous message (optional) and the current message (required). Text can be English, Tamil or Malayalam. A message is plain text of any length, typed in or picked from the example chips.</p>
-      <p><b>Output.</b> For each model: a verdict, Safe or Abusive, a probability bar, and a risk score between 0 and 1. When both messages are given, one line says whether context changed the verdict. The last six analyses stay listed on the page.</p>
-      <p>The system supports human reviewers. It should not automatically punish users or make final judgements about their intentions.</p>
+        <h3><span>8</span>NLP pipeline</h3>
+        <ol>
+          <li><b>Language handling.</b> Tamil and Malayalam text is detected by its Unicode range and translated to
+            English. English text passes straight through.</li>
+          <li><b>Text cleaning.</b> Lowercase the text, remove links, replace every character that is not a letter,
+            digit or space with a space, and collapse repeated spaces.</li>
+          <li><b>Data splitting.</b> The data was divided into a training set and a testing set.</li>
+          <li><b>Features.</b> TF-IDF with up to 10,000 features, single words and word pairs, English stop words
+            removed, and L2 normalisation.</li>
+          <li><b>Baseline model.</b> Logistic regression on the current message only.</li>
+          <li><b>Context-aware model.</b> The same classifier on the previous message and the current message joined
+            into one text.</li>
+          <li><b>Prediction.</b> Each model returns the probability that the message is abusive. A probability of 0.5 or
+            more is labelled ABUSIVE, and anything lower SAFE.</li>
+          <li><b>Comparison.</b> The page shows both labels, and a short note when context changed the result.</li>
+        </ol>
+        <p>Both classifiers are logistic regression with balanced class weights, C = 1.0, L2 penalty, the lbfgs solver
+          and up to 1,000 iterations.</p>
+        <table>
+          <tr>
+            <th>Metric</th>
+            <th>Baseline</th>
+            <th>Context-aware</th>
+          </tr>
+          <tr>
+            <td>Accuracy</td>
+            <td>77.60%</td>
+            <td>78.82%</td>
+          </tr>
+          <tr>
+            <td>Abusive precision</td>
+            <td>44.97%</td>
+            <td>47.24%</td>
+          </tr>
+          <tr>
+            <td>Abusive recall</td>
+            <td>51.45%</td>
+            <td>46.47%</td>
+          </tr>
+          <tr>
+            <td>Abusive F1-score</td>
+            <td>47.99%</td>
+            <td>46.85%</td>
+          </tr>
+        </table>
+        <p>Context raised accuracy and precision a little, while recall and F1-score went down. So adding context does
+          not improve every metric.</p>
 
-      <h3><span>10</span>References</h3>
-      <ol>
-        <li>Vidgen, B., Nguyen, D., Margetts, H., Rossini, P., Tromble, R. (2021). Introducing CAD: the Contextual Abuse Dataset. <i>Proceedings of NAACL 2021</i>. <a href="https://www.aclweb.org/anthology/2021.naacl-main.182/" target="_blank" rel="noopener">aclweb.org/anthology/2021.naacl-main.182</a></li>
-        <li>CAD dataset and code. <a href="https://doi.org/10.5281/zenodo.4881008" target="_blank" rel="noopener">doi.org/10.5281/zenodo.4881008</a>, <a href="https://github.com/dongpng/cad_naacl2021" target="_blank" rel="noopener">github.com/dongpng/cad_naacl2021</a></li>
-        <li>Pedregosa, F. et al. (2011). Scikit-learn: Machine Learning in Python. <i>Journal of Machine Learning Research</i>, 12, 2825–2830.</li>
-        <li>Flask documentation. <a href="https://flask.palletsprojects.com/" target="_blank" rel="noopener">flask.palletsprojects.com</a></li>
-        <li>deep-translator. <a href="https://pypi.org/project/deep-translator/" target="_blank" rel="noopener">pypi.org/project/deep-translator</a></li>
-      </ol>
+        <h3><span>9</span>Users, inputs and output</h3>
+        <p><b>Users.</b> Moderators on social media platforms, schools and universities reviewing student chat reports,
+          community moderators, and researchers studying how context affects abuse detection.</p>
+        <p><b>Inputs.</b> Two text boxes: the previous message (optional) and the current message (required). Text can
+          be English, Tamil or Malayalam. A message is plain text of any length, typed in or picked from the example
+          chips.</p>
+        <p><b>Output.</b> For each model: a verdict, Safe or Abusive, a probability bar, and a risk score between 0 and
+          1. When both messages are given, one line says whether context changed the verdict. The last six analyses stay
+          listed on the page.</p>
+        <p>The system supports human reviewers. It should not automatically punish users or make final judgements about
+          their intentions.</p>
+
+        <h3><span>10</span>References</h3>
+        <ol>
+          <li>Vidgen, B., Nguyen, D., Margetts, H., Rossini, P., Tromble, R. (2021). Introducing CAD: the Contextual
+            Abuse Dataset. <i>Proceedings of NAACL 2021</i>. <a
+              href="https://www.aclweb.org/anthology/2021.naacl-main.182/" target="_blank"
+              rel="noopener">aclweb.org/anthology/2021.naacl-main.182</a></li>
+          <li>CAD dataset and code. <a href="https://doi.org/10.5281/zenodo.4881008" target="_blank"
+              rel="noopener">doi.org/10.5281/zenodo.4881008</a>, <a href="https://github.com/dongpng/cad_naacl2021"
+              target="_blank" rel="noopener">github.com/dongpng/cad_naacl2021</a></li>
+          <li>Pedregosa, F. et al. (2011). Scikit-learn: Machine Learning in Python. <i>Journal of Machine Learning
+              Research</i>, 12, 2825–2830.</li>
+          <li>Flask documentation. <a href="https://flask.palletsprojects.com/" target="_blank"
+              rel="noopener">flask.palletsprojects.com</a></li>
+          <li>deep-translator. <a href="https://pypi.org/project/deep-translator/" target="_blank"
+              rel="noopener">pypi.org/project/deep-translator</a></li>
+        </ol>
+      </div>
+
+      <article class="demo" id="deck" style="margin-top:40px">
+        <div class="head">
+          <div class="mono">Project PPT</div>
+          <h3>Project presentation</h3>
+          <p class="cap">The slides, scroll through them below.</p>
+        </div>
+        <div class="acts"><a class="btn dark small" href="assets/project/project-ppt.pdf" download>Download PDF</a>
+        </div>
+        <object class="pdfbox" data="assets/project/project-ppt.pdf#view=FitH" type="application/pdf"
+          aria-label="Project presentation">
+          <p>This browser cannot show the PDF here. <a href="assets/project/project-ppt.pdf">Open it</a>.</p>
+        </object>
+      </article>
+      <div class="vid" id="video">Project demo video: link to be added.</div>
     </div>
+  </section>
 
-    <article class="demo" id="deck" style="margin-top:40px">
-      <div class="head"><div class="mono">Project PPT</div><h3>Project presentation</h3><p class="cap">The slides, scroll through them below.</p></div>
-      <div class="acts"><a class="btn dark small" href="assets/project/project-ppt.pdf" download>Download PDF</a></div>
-      <object class="pdfbox" data="assets/project/project-ppt.pdf#view=FitH" type="application/pdf" aria-label="Project presentation"><p>This browser cannot show the PDF here. <a href="assets/project/project-ppt.pdf">Open it</a>.</p></object>
-    </article>
-    <div class="vid" id="video">Project demo video: link to be added.</div>
-  </div>
-</section>
-
-<section id="about" class="paper about">
-  <div class="wrap">
-    <div class="sec-head"><div class="mono">About</div><h2>About</h2></div>
-    <p>I am Bharath Palanisamy Mettukadai (23MID0014), an Integrated M.Tech student at VIT Vellore.</p>
-    <p>I speak Tamil, Malayalam, English and Hindi, which is why this portfolio moves between all four.</p>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="mono">Contact</div>
-      <h2>Contact</h2>
-      <p>Submitted to Prof. Sharmila Banu for CSI4001, Natural Language Processing and Computational Linguistics.</p>
+  <section id="about" class="paper about">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono">About</div>
+        <h2>About</h2>
+      </div>
+      <p>I am Bharath Palanisamy Mettukadai (23MID0014), an Integrated M.Tech student at VIT Vellore.</p>
+      <p>I speak Tamil, Malayalam, English and Hindi, which is why this portfolio moves between all four.</p>
     </div>
-    <div class="acts">
-      <a class="btn dark" href="https://www.linkedin.com/in/bharath-palanisamy-mettukadai-b5000128b/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn" href="https://github.com/bharath-mp-2005" target="_blank" rel="noopener">GitHub: bharath-mp-2005</a>
-    </div>
-  </div>
-</section>
+  </section>
 
-<footer><div class="wrap mono">Bharath · CSI4001 · VIT Vellore</div></footer>
-<script src="js/main.js"></script>
+  <section id="contact">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono">Contact</div>
+        <h2>Contact</h2>
+        <p>Submitted to Prof. Dr. Sharmila Banu for CSI4001, Natural Language Processing and Computational Linguistics.
+        </p>
+      </div>
+      <div class="acts">
+        <a class="btn dark" href="https://www.linkedin.com/in/bharath-palanisamy-mettukadai-b5000128b/" target="_blank"
+          rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/bharath-mp-2005" target="_blank" rel="noopener">GitHub:
+          bharath-mp-2005</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap mono">Bharath · CSI4001 · VIT Vellore</div>
+  </footer>
+  <script src="js/main.js"></script>
 </body>
+
 </html>

@@ -3,11 +3,11 @@ BHARATH NLP PORTFOLIO - HOW TO ADD YOUR FILES
 Open index.html in a browser. No internet or server is needed.
 Put each file in the folder shown, with exactly this name. If a name differs, the site will not find it.
 
-1. HANDWRITTEN WORK PHOTOS  ->  folder: assets/img/
-   Format: .jpg only (rename .jpeg or .png to .jpg)
-   assets/img/edit-distance.jpg   photo of your edit distance working (Edit distance demo)
-   assets/img/viterbi.jpg         photo of your Viterbi working (Viterbi demo)
-   assets/img/morphotactics.jpg   photo of your morphotactics takeaway (Morphotactics demo)
+1. HANDWRITTEN WORK PHOTOS  ->  folder: img/
+   Format: .jpeg (or .jpg)
+   img/edit-distance.jpeg   photo of your edit distance working (Edit distance demo)
+   img/viterbi.jpeg         photo of your Viterbi working (Viterbi demo)
+   img/morphotactics.jpeg   photo of your morphotactics takeaway (Morphotactics demo)
    Until a photo is added, its place shows an orange dashed box naming the file it needs.
 
 2. NOTEBOOK PDFs (the two GitHub activities)  ->  folder: assets/pdf/
