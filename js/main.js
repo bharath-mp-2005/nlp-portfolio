@@ -323,3 +323,164 @@
   bA.addEventListener('input', renderB); bB.addEventListener('input', renderB);
   renderB();
 })();
+
+/* ---------- Faculty hero: animate in when scrolled into view ---------- */
+(function () {
+  var s = document.getElementById('faculty');
+  if (!s) return;
+  document.documentElement.classList.add('js');
+  if (typeof IntersectionObserver !== 'function') { s.classList.add('in'); return; }
+  var io = new IntersectionObserver(function (en) {
+    if (en[0].isIntersecting) { s.classList.add('in'); io.disconnect(); }
+  }, { threshold: 0.35 });
+  io.observe(s);
+})();
+
+/* ---------- Click a photo to view it larger ---------- */
+(function () {
+  var SEL = '.hand img, .photo img, .phone img, .fac-ph';
+  var ov = document.createElement('div');
+  ov.className = 'lb'; ov.hidden = true; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); ov.setAttribute('aria-label', 'Image viewer');
+  ov.innerHTML = '<button class="lb-x" type="button" aria-label="Close">\u00d7</button><img alt=""><div class="lb-cap"></div><a class="lb-open" target="_blank" rel="noopener">Open full size</a>';
+  document.body.appendChild(ov);
+  var big = ov.querySelector('img'), cap = ov.querySelector('.lb-cap'), open = ov.querySelector('.lb-open'), x = ov.querySelector('.lb-x');
+  var last = null;
+  function show(img) {
+    last = img;
+    big.src = img.currentSrc || img.src; big.alt = img.alt || '';
+    var fc = img.closest('figure') && img.closest('figure').querySelector('figcaption');
+    cap.textContent = fc && fc.offsetParent !== null ? fc.textContent.trim() : (img.alt || '');
+    open.href = big.src;
+    ov.hidden = false; document.body.classList.add('lb-on'); x.focus();
+  }
+  function hide() {
+    ov.hidden = true; document.body.classList.remove('lb-on'); big.removeAttribute('src');
+    if (last) { try { last.focus({ preventScroll: true }); } catch (e) {} }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(SEL), function (img) {
+    img.tabIndex = 0; img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', 'View larger: ' + (img.alt || 'photo'));
+    img.addEventListener('click', function () { show(img); });
+    img.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(img); } });
+  });
+  ov.addEventListener('click', function (e) { if (e.target !== open) hide(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !ov.hidden) hide(); });
+})();
+
+/* ---------- PDFs: phones and tablets cannot embed a PDF, so draw the pages with pdf.js ---------- */
+(function () {
+  var objs = document.querySelectorAll('object.pdfbox');
+  if (!objs.length) return;
+  var mobile = /Android|iPhone|iPad|iPod|Mobi/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent));
+  if (!(mobile || navigator.pdfViewerEnabled === false)) return;   /* desktop browsers keep the built-in viewer */
+  var LIB = 'assets/vendor/pdfjs/pdf.min.js', WORKER = 'assets/vendor/pdfjs/pdf.worker.min.js';
+  var libP = null;
+  function loadLib() {
+    if (libP) return libP;
+    libP = new Promise(function (res, rej) {
+      if (window.pdfjsLib) return res(window.pdfjsLib);
+      var s = document.createElement('script'); s.src = LIB;
+      s.onload = function () { window.pdfjsLib.GlobalWorkerOptions.workerSrc = WORKER; res(window.pdfjsLib); };
+      s.onerror = function () { rej(new Error('pdf.js failed to load')); };
+      document.head.appendChild(s);
+    });
+    return libP;
+  }
+  var FIRST = 3;
+  Array.prototype.forEach.call(objs, function (obj) {
+    var url = obj.getAttribute('data').split('#')[0];
+    var box = document.createElement('div'); box.className = 'pdfview';
+    obj.parentNode.replaceChild(box, obj);
+    function fail() {
+      box.innerHTML = '';
+      var p = document.createElement('p'); p.className = 'pdfmsg';
+      p.innerHTML = 'The PDF could not be shown here. <a href="' + url + '">Open it</a> or use Download PDF above.';
+      box.appendChild(p);
+    }
+    function start() {
+      loadLib().then(function (lib) { return lib.getDocument(url).promise; }).then(function (doc) {
+        var n = doc.numPages, pages = [], io = null;
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        function render(el, i) {
+          if (el.dataset.done) return; el.dataset.done = '1';
+          doc.getPage(i).then(function (pg) {
+            var base = pg.getViewport({ scale: 1 });
+            var scale = (el.clientWidth || 340) / base.width * dpr;
+            var vp = pg.getViewport({ scale: scale });
+            var c = document.createElement('canvas'); c.width = Math.floor(vp.width); c.height = Math.floor(vp.height);
+            el.style.aspectRatio = base.width + ' / ' + base.height;
+            return pg.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise.then(function () { el.appendChild(c); });
+          }).catch(function () { delete el.dataset.done; });
+        }
+        function watch(el, i) {
+          if (!('IntersectionObserver' in window)) { render(el, i); return; }
+          if (!io) io = new IntersectionObserver(function (en) {
+            en.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); render(e.target, +e.target.dataset.n); } });
+          }, { rootMargin: '700px 0px' });
+          el.dataset.n = i; io.observe(el);
+        }
+        function addPage(i) {
+          var el = document.createElement('div'); el.className = 'pdfpage';
+          el.style.aspectRatio = pages.length ? pages[0].style.aspectRatio : '3 / 4';
+          el.setAttribute('role', 'img'); el.setAttribute('aria-label', 'Page ' + i + ' of ' + n);
+          box.insertBefore(el, more || null); pages.push(el); watch(el, i);
+        }
+        var more = null;
+        if (n > FIRST) {
+          more = document.createElement('button'); more.type = 'button'; more.className = 'btn small pdfmore';
+          more.textContent = 'Show all ' + n + ' pages';
+          more.addEventListener('click', function () {
+            for (var k = FIRST + 1; k <= n; k++) addPage(k);
+            more.remove(); more = null;
+          });
+          box.appendChild(more);
+        }
+        for (var i = 1; i <= Math.min(n, FIRST); i++) addPage(i);
+      }).catch(fail);
+    }
+    if ('IntersectionObserver' in window) {
+      var o = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { o.disconnect(); start(); } }, { rootMargin: '600px 0px' });
+      o.observe(box);
+    } else start();
+  });
+})();
+
+/* ---------- Loading screen: 0 to 100%, then reveal the page ---------- */
+(function () {
+  var root = document.documentElement, pre = document.getElementById('pre');
+  if (!pre || !root.classList.contains('loading')) { root.classList.add('ready'); return; }
+  var num = document.getElementById('preNum'), bar = document.getElementById('preBar');
+  var imgs = Array.prototype.slice.call(document.images);
+  var total = imgs.length + 1, done = 0, loaded = false, finished = false, v = 0;
+  function bump() { done++; }
+  imgs.forEach(function (im) {
+    if (im.complete) { done++; return; }
+    im.addEventListener('load', bump, { once: true }); im.addEventListener('error', bump, { once: true });
+  });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(bump); else done++;
+  window.addEventListener('load', function () { loaded = true; });
+  if (document.readyState === 'complete') loaded = true;
+  var started = Date.now();
+  function finish() {
+    if (finished) return; finished = true;
+    clearInterval(timer);
+    var reduce = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    pre.classList.add('out');
+    setTimeout(function () {
+      root.classList.remove('loading'); root.classList.add('ready');
+      window.scrollTo(0, 0);
+      setTimeout(function () { if (pre.parentNode) pre.parentNode.removeChild(pre); }, 100);
+    }, reduce ? 0 : 650);
+  }
+  var timer = setInterval(function () {
+    var target = Math.min(done / total, 1) * 100;
+    if (!loaded) target = Math.min(target, 95);
+    if (Date.now() - started > 12000) target = 100;      /* never get stuck on a slow file */
+    v += Math.max((target - v) * 0.12, target > v ? 0.5 : 0);
+    if (v > target) v = target;
+    if (target >= 100 && v > 99.4) v = 100;
+    num.textContent = Math.round(v);
+    bar.style.transform = 'scaleX(' + (v / 100) + ')';
+    if (v >= 100) { clearInterval(timer); setTimeout(finish, 350); }
+  }, 30);
+})();

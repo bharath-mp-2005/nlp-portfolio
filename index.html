@@ -5,31 +5,41 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Bharath · NLP Portfolio</title>
+  <script>document.documentElement.className += ' js loading';</script>
+  <link rel="preload" href="fonts/bricolage-grotesque-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+  <div class="pre" id="pre" role="status" aria-live="polite" aria-label="Loading the portfolio">
+    <div class="mono">CSI4001 · NLP portfolio</div>
+    <div>
+      <div class="pre-n"><span id="preNum">0</span><small>%</small></div>
+      <div class="pre-bar"><i id="preBar"></i></div>
+    </div>
+  </div>
   <div class="wrap">
     <nav class="nav" aria-label="Main">
       <a class="logo" href="#top"></a>
       <ul>
         <li><a href="#activities">Activities</a></li>
         <li><a href="#project">Project</a></li>
+        <li><a href="#radio">Radio</a></li>
         <li><a href="#about">About</a></li>
         <li><a class="pill" href="#contact">Contact</a></li>
       </ul>
     </nav>
     <header class="hero" id="top">
       <div class="hero-text">
-        <div class="mono">CSI4001 · Natural Language Processing</div>
-        <h1>Bharath</h1>
+        <div class="mono hcode">CSI4001 · Natural Language Processing</div>
+        <h1 aria-label="Bharath"><span class="ch" aria-hidden="true" style="--i:0">B</span><span class="ch" aria-hidden="true" style="--i:1">h</span><span class="ch" aria-hidden="true" style="--i:2">a</span><span class="ch" aria-hidden="true" style="--i:3">r</span><span class="ch" aria-hidden="true" style="--i:4">a</span><span class="ch" aria-hidden="true" style="--i:5">t</span><span class="ch" aria-hidden="true" style="--i:6">h</span></h1>
         <div class="sub">Class portfolio</div>
         <p class="lead">Viterbi, edit distance, morphotactics and metaphor, worked through in Tamil, Malayalam, Hindi
           and English.</p>
         <div><a class="btn accent" href="#activities">See the activities</a> <a class="btn" href="#about">About me</a>
         </div>
-        <div class="mono" style="text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:14px">Submitted
-          to Prof. Dr. Sharmila Banu · VIT Vellore</div>
+        <div class="mono hsub" style="text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:14px">
+          Submitted to <b>Prof. Dr. Sharmila Banu</b> · VIT Vellore</div>
       </div>
       <div class="stage" id="stage" tabindex="0" role="img"
         aria-label="Portrait of Bharath in front of an orange circle, surrounded by words in Tamil, Malayalam, Hindi and English that rotate. Drag sideways or use the arrow keys to rotate them.">
@@ -41,13 +51,24 @@
     </header>
   </div>
 
+  <!-- Second hero: the faculty (text only, animates in when scrolled into view) -->
+  <section class="fac" id="faculty" aria-labelledby="facName">
+    <div class="wrap fac-text">
+      <div class="fac-top rv" style="--d:0ms"><img class="fac-ph" src="img/faculty.jpg" alt="Prof. Dr. Sharmila Banu"><span class="mono">My faculty</span></div>
+      <h2 id="facName"><span class="ln"><span class="rv up" style="--d:100ms">Prof. Dr.</span></span><span class="ln"><span class="rv up" style="--d:220ms">Sharmila Banu</span></span></h2>
+      <div class="bar rv" style="--d:380ms"></div>
+      <div class="ccode" aria-label="CSI4001"><span class="rv up" style="--d:460ms" aria-hidden="true">C</span><span class="rv up" style="--d:520ms" aria-hidden="true">S</span><span class="rv up" style="--d:580ms" aria-hidden="true">I</span><span class="rv up" style="--d:640ms" aria-hidden="true">4</span><span class="rv up" style="--d:700ms" aria-hidden="true">0</span><span class="rv up" style="--d:760ms" aria-hidden="true">0</span><span class="rv up" style="--d:820ms" aria-hidden="true">1</span></div>
+      <p class="cname rv" style="--d:940ms">Natural Language Processing and Computational Linguistics</p>
+      <p class="cinst rv" style="--d:1040ms">VIT Vellore</p>
+    </div>
+  </section>
+
   <section id="activities" class="paper">
     <div class="wrap">
       <div class="sec-head">
         <div class="mono">Class activities</div>
         <h2>Activities</h2>
-        <p>Seven entries: five class activities from CSI4001 and two notebooks from my GitHub. Where there is a working
-          version, it is in the demos below.</p>
+        <p>Nine entries: five class activities from CSI4001, the Vibha Radio app I built afterwards, two notebooks from my GitHub and the course project. Where there is a working version, it is in the demos below.</p>
       </div>
       <ol class="log">
         <li class="row">
@@ -95,6 +116,14 @@
         <li class="row">
           <div class="n">6</div>
           <div>
+            <h3>Vibha Radio</h3>
+            <p class="d">After Radio Garden was shown in class, I built my own radio app with a globe, search and favorites.</p>
+          </div>
+          <div class="side"><span class="tag">After class · my app</span><a class="btn small" href="#radio">See the app</a></div>
+        </li>
+        <li class="row">
+          <div class="n">7</div>
+          <div>
             <h3>Inaugural addresses</h3>
             <p class="d">Word clouds, counts and a comparison of five presidents, with NLTK.</p>
           </div>
@@ -102,13 +131,21 @@
               notebook</a></div>
         </li>
         <li class="row">
-          <div class="n">7</div>
+          <div class="n">8</div>
           <div>
             <h3>Name classifier and bag of words</h3>
             <p class="d">Naive Bayes on the last letter of a name, and cosine similarity between sentences.</p>
           </div>
           <div class="side"><span class="tag">Notebook · 21 Aug 2026</span><a class="btn small" href="#nb2">Read the
               notebook</a></div>
+        </li>
+        <li class="row">
+          <div class="n">9</div>
+          <div>
+            <h3>Context-Aware Cyberbullying Detection in Chats</h3>
+            <p class="d">The course project: reading a message together with the one before it, with writeup, slides and a demo.</p>
+          </div>
+          <div class="side"><span class="tag">Project</span><a class="btn small" href="#project">See the project</a></div>
         </li>
       </ol>
     </div>
@@ -248,6 +285,52 @@
           </div>
         </div>
       </article>
+    </div>
+  </section>
+
+  <section id="radio" class="radio">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="mono">After the activity · my own app</div>
+        <h2>Vibha Radio</h2>
+        <p>In class, Prof. Sharmila Banu showed us Radio Garden, where you spin a globe and listen to radio stations from
+          anywhere. I liked it enough to build my own version, and Vibha Radio is inspired by it.</p>
+      </div>
+      <ul class="shots">
+        <li>
+          <div class="phone"><img src="img/radio-globe.jpg" alt="Vibha Radio globe screen showing 685 stations worldwide"
+             ></div>
+          <b>Globe</b><span>Spin the earth and find stations. 685 stations worldwide.</span>
+        </li>
+        <li>
+          <div class="phone"><img src="img/radio-browse.jpg"
+              alt="Browse screen listing live stations with a search box"></div>
+          <b>Browse</b><span>A list of 2,500 live stations to scroll through.</span>
+        </li>
+        <li>
+          <div class="phone"><img src="img/radio-search.jpg"
+              alt="Searching for kodai and finding AIR Kodai FM"></div>
+          <b>Search</b><span>Search by station name, tag or language.</span>
+        </li>
+        <li>
+          <div class="phone"><img src="img/radio-favorites.jpg"
+              alt="Favorites screen with three Tamil stations"></div>
+          <b>Favorites</b><span>Heart a station to keep it. Mine are all Tamil.</span>
+        </li>
+      </ul>
+      <!-- APK: put the file at assets/app/vibha-radio.apk (see README.txt) -->
+      <div class="getapp">
+        <div>
+          <h3>Try it yourself</h3>
+          <p>Download the Android APK and install it on your phone. Android may ask you to allow installs from this source.</p>
+        </div>
+        <a class="btn accent" id="appLink" href="assets/app/vibha-radio.apk" download="vibha-radio.apk">Download the app (APK)</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="demos2">
+    <div class="wrap">
       <article class="demo" id="inaugural">
         <div class="head">
           <div class="mono">Notebook · 31 Jul 2026 · NLTK</div>
@@ -355,6 +438,12 @@
       </div>
       <div class="acts"><a class="btn dark small" href="#writeup">Project writeup</a><a class="btn small"
           href="#deck">Project PPT</a><a class="btn small" href="#video">Demo video</a></div>
+
+      <figure class="photo">
+        <img src="img/presenting.jpg" alt="Bharath presenting the cyberbullying detection project to the class"
+         >
+        <figcaption>Presenting the project to the class.</figcaption>
+      </figure>
 
       <div class="wr" id="writeup">
         <h3><span>1</span>Title</h3>
@@ -560,7 +649,19 @@
           <p>This browser cannot show the PDF here. <a href="assets/project/project-ppt.pdf">Open it</a>.</p>
         </object>
       </article>
-      <div class="vid" id="video">Project demo video: link to be added.</div>
+      <article class="demo" id="video">
+        <div class="head">
+          <div class="mono">Demo video</div>
+          <h3>Project demo video</h3>
+          <p class="cap">The cyberbullying detection project running, from the previous and current message to the final verdict.</p>
+        </div>
+        <!-- Put the file at assets/project/demo-video.mp4 (see README.txt) -->
+        <video class="demovid" controls preload="metadata" playsinline>
+          <source src="assets/project/demo-video.mp4" type="video/mp4">
+          Your browser cannot play the video here. <a href="assets/project/demo-video.mp4">Open the video</a>.
+        </video>
+        <div class="acts" style="margin-top:14px"><a class="btn small" href="assets/project/demo-video.mp4" download>Download video</a></div>
+      </article>
     </div>
   </section>
 
@@ -589,6 +690,15 @@
         <a class="btn" href="https://github.com/bharath-mp-2005" target="_blank" rel="noopener">GitHub:
           bharath-mp-2005</a>
       </div>
+    </div>
+  </section>
+
+  <section id="class" class="paper classpic">
+    <div class="wrap">
+      <figure class="photo">
+        <img src="img/class-photo.jpg" alt="Prof. Dr. Sharmila Banu with the CSI4001 class">
+        <figcaption>The CSI4001 class with Prof. Dr. Sharmila Banu.</figcaption>
+      </figure>
     </div>
   </section>
 

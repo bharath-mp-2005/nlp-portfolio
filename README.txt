@@ -19,13 +19,33 @@ Put each file in the folder shown, with exactly this name. If a name differs, th
    assets/project/project-ppt.pdf   the cyberbullying project slides
    Already included. Replace it with the same name to update it.
 
-4. DEMO VIDEO LINK  ->  file: index.html
-   Search for:  Project demo video: link to be added.
-   Replace that line with:
-   <div class="vid" id="video"><a class="btn dark" href="PASTE-YOUR-VIDEO-LINK" target="_blank" rel="noopener">Watch the demo video</a></div>
+4. DEMO VIDEO  ->  folder: assets/project/
+   assets/project/demo-video.mp4   the project demo video (H.264 video + AAC audio .mp4 plays everywhere)
+   Put your video in assets/project/ and name it exactly demo-video.mp4 (lowercase, with hyphens).
+   The player in the Project section already points to that path, so no code change is needed.
+   Until the file is added the player stays empty.
 
 5. PORTRAIT  ->  folder: img/
    img/me.png   your portrait (transparent PNG, standing, cut out). Replace it with the same name.
 
+6. VIBHA RADIO APP (APK)  ->  folder: assets/app/
+   assets/app/vibha-radio.apk   your Android app file
+   Put the APK in the assets/app/ folder and name it exactly vibha-radio.apk (lowercase, with hyphens).
+   The "Download the app (APK)" button in the Vibha Radio section already points to that path, so no code change is needed.
+   If you want a different file name, search index.html for assets/app/vibha-radio.apk and change both places it appears.
+   Until the file is added the button leads to a "file not found" page.
+   The four app screenshots are img/radio-globe.jpg, radio-browse.jpg, radio-search.jpg, radio-favorites.jpg.
+
+7. OTHER PHOTOS  ->  folder: img/
+   img/faculty.jpg      small round faculty portrait in the second hero
+   img/presenting.jpg   you presenting the project (Project section)
+   img/class-photo.jpg  final class photo (bottom of the page)
+
 Other folders (do not rename): css/, js/, fonts/
 Note: PDF viewing inside the page works in desktop Chrome, Edge and Firefox. On phones the Download PDF button is the way to open them.
+
+Notes
+- Click any photo on the page to view it larger (Esc or tap to close).
+- On phones and tablets the PDFs are drawn with the bundled pdf.js (assets/vendor/pdfjs/, do not delete). The first 3 pages show, with a button for the rest. Desktop browsers keep their built-in PDF viewer.
+- pdf.js needs the site to be served from a web address (your hosting is fine). Opening index.html straight from a phone's files app will not load the PDFs; the Download PDF button still works.
+- The page opens with a 0 to 100% loading screen and shows the site only after all images and fonts have loaded (it gives up waiting after 12 seconds so it can never get stuck). Then the name Bharath animates in letter by letter. Visitors with "reduce motion" turned on see no animation.
